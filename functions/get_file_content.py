@@ -1,6 +1,6 @@
 import os
 
-def get_files_info(working_directory, directory="."):
+def get_file_content(working_directory, directory):
     try:
         # Normalize working directory and target directory
         working_directory = os.path.abspath(working_directory)
@@ -11,29 +11,16 @@ def get_files_info(working_directory, directory="."):
             return f'Error: Cannot list "{directory}" as it is outside the permitted working directory'
 
         # Ensure target is actually a directory
-        if not os.path.isdir(target_path):
+        if not os.path.isfile(target_path):
             return f'Error: "{directory}" is not a directory'
         
-    
-        # Build output lines
-        output_lines = [f'Result for {directory or "current directory"}:']
-        for entry in os.scandir(target_path):
-            file_size = entry.stat().st_size
-            is_dir = entry.is_dir()
-            output_lines.append(
-                f' - {entry.name}: file_size={file_size} bytes, is_dir={is_dir}'
-            )
+        MAX_CHARS = 10000
 
-        return "\n".join(output_lines)
+        with open(target_path, "r") as f:
+            file_content_string = f.read(MAX_CHARS)
+
+            return file_content_string
 
     except Exception as e:
         # Catch any error and return it as a string with "Error:" prefix
         return f"Error: {str(e)}"
-    
-    
-    
-
-   
-
-    
-    
