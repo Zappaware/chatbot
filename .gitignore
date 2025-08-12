@@ -12,3 +12,7 @@ wheels/
 # enviroment
 
 .env
+
+#IDE settings
+
+.idea/
