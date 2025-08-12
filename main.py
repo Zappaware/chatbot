@@ -34,5 +34,5 @@ if len(sys.argv) > 2 and sys.argv[2] == "--verbose":
     print(f"Prompt tokens: {response.usage_metadata.prompt_token_count}")
     print(f"Response tokens: {response.usage_metadata.candidates_token_count}")     
 
-#if __name__ == "__main__":
-    #main()
+if __name__ == "__main__":
+    main()
